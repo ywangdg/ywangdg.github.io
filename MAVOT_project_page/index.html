@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>MAVOT: Memory-Augmented Video Object Tracking</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+
+    p {
+      width: 95%;
+      padding: 10px;
+      margin: auto;
+    }
+
+    /* Remove the navbar's default margin-bottom and rounded borders */
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    #ours {
+      font-weight: bold;
+    }
+
+    .glyphicon.glyphicon-arrow-down.main_arr {
+      font-size: 75px;
+    }
+
+    .glyphicon.glyphicon-option-horizontal.main_arr {
+      top: 50px;
+      font-size: 75px;
+    }
+
+    .glyphicon {
+      display: block;
+      text-align:center;
+    }
+
+    #noise {
+      text-align:center;
+      vertical-align: bottom;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default  navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <!-- <a class="navbar-brand" href="#">Portfolio</a> -->
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#Comparison">Comparison</a></li>
+          <li><a href="#Memory">Memory</a></li>
+          <li><a href="#Deformability">Deformability</a></li>
+          <li><a href="#More">More</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron" style="margin-bottom:0;background-color:transparent !important" id="title">
+    <div class="container text-center">
+      <h2>MAVOT: Memory-Augmented Video Object Tracking</h2>
+      <p>Supplementary Material</p>
+    </div>
+  </div>
+
+
+  <div class="jumbotron" id="our_illus">
+    <h3 class="text-center">Overview</h2>
+    <div class="container-fluid text-align">
+      <div class="row">
+        <p>   This webpage is a supplementary material for paper <b>MAVOT: Memory-Augmented Video Object Tracking</b>. There will be four sections illustrating different aspects of our tracker. <a href="#Comparison"><b>Section 1</b></a> is a comparison between MAVOT and other trackers. <a href="#Memory"><b>Section 2</b></a> gives a visualization of memory module of MAVOT. <a href="#Deformability"><b>Section 3</b></a> shows potential deformable ability of MAVOT. <a href="#More"><b>Section 4</b></a> gives more examples of MAVOT.
+        </p>
+      </div>
+    </div>
+
+ 
+    <div  id="imple">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div >
+          <div class="workflow text-center">
+          <img src="images/overview.png"  alt="overview" height="270"  width="800" />
+          </div>
+        </div>  
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+
+<!--   <div class="container-fluid text-center" id="qua_comp">
+    <h2 class="text-center">Results</h2>
+</div> -->
+  <div class="jumbotron container-fluid bg-3" id="Comparison" style="background-color:transparent">
+    <div class="row" >
+      <h3 class="text-center">Section 1: Comparison with other trackers</h3>
+      <p>Compared with some other trackers, MAVOT is robust against total occlusion,large-scale shape changes, motion blue and chaotic background. Here we compare our results with state-of-art trackers: Continuous Convolution Operator Tracker (CCOT), Scale-and-State Aware Tracker (SSAT), Sum of Template And Pixel-wise LEarners (Staple), SiameseFC-AlexNet (SiamFC-A) and Hierarchical Convolutional Features for Visual
+Tracking (HCF). </p>
+  <div class="row">
+      <div class="col-sm-2">
+      <span class="glyphicon glyphicon-unchecked" aria-hidden="true" style="color: rgb(240, 240, 0)"><p style="color: rgb(0, 0,0)">MAVOT</p></span>
+      </div>
+      <div class="col-sm-2">
+      <span class="glyphicon glyphicon-unchecked" aria-hidden="true" style="color: rgb(0, 237, 0)"><p style="color: rgb(0, 0,0)">CCOT</p></span> 
+      </div>
+      <div class="col-sm-2">
+      <span class="glyphicon glyphicon-unchecked" aria-hidden="true" style="color: rgb(155, 255, 255)"><p style="color: rgb(0, 0,0)">SSAT</p></span> 
+      </div>
+      <div class="col-sm-2">
+      <span class="glyphicon glyphicon-unchecked" aria-hidden="true" style="color: rgb(255, 155, 255)"><p style="color: rgb(0, 0,0)">Staple</p></span> 
+      </div>
+      <div class="col-sm-2">
+      <span class="glyphicon glyphicon-unchecked" aria-hidden="true" style="color: rgb(237, 0, 0)"><p style="color: rgb(0, 0,0)">SiamFC-A</p></span> 
+      </div>
+      <div class="col-sm-2">
+      <span class="glyphicon glyphicon-unchecked" aria-hidden="true" style="color: rgb(255, 128, 0)"><p style="color: rgb(0, 0,0)">HCF</p></span> 
+      </div>
+  </div>
+    </div>
+    <br>
+  
+    <div class="row">
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/compare/fish4.mp4" type="video/mp4">
+        </video>
+        <p><b>fish4</b>. The swimming fish shares a very similar appearance with the background which causes tracking difficulties even for humans. Its rapid shape change under low light makes it a very hard tracking case. However, MAVOT can still track the fish at a relatively higher accuracy than the other state-of-art trackers.</p>
+      </div>
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/compare/girl.mp4" type="video/mp4">
+        </video>
+        <p><b>girl</b>. The girl is totally occluded by the passing man. While state-of-art trackers later track the occluder instead, MAVOT is able to find the original target and follow the target for a very long sequence (1500 frames).</p>
+      </div>
+       <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/compare/gymnastics4.mp4" type="video/mp4">
+        </video>
+        <p><b>gymnastics4</b>. While performing, the gymnast exhibits quite dramatic shape changes, but MAVOT can still locate her with a high accuracy. The background contains several other similarly-looking gymnasts which poses confusion to other trackers where they will later track the background gymnasts. In contrast, MAVOT keeps tracking the target gymnast till the very end.</p>
+      </div>
+    </div>
+    <div class="row">
+     
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/compare/motocross2.mp4" type="video/mp4">
+        </video>
+        <p><b>motocross2</b>. The motorbike moves and turns at a very high speed, causing image blur with its rapid change in shape. In spite of these difficulties, MAVOT is still able to keep tracking the motor bike to the end.</p>
+      </div>
+
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/compare/road.mp4" type="video/mp4">
+        </video>
+        <p><b>road</b>. The racking bike passes under several occluders (trees) in a long sequence (558 frames). Though the bike is totally occluded by trees or other facilities, MAVOT can resume tracking the target as soon as it reappears.</p>      
+        </div>
+        <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/compare/wiper.mp4" type="video/mp4">
+        </video>
+        <p><b>wiper</b>. The car being tracked is in poor illumination condition, with frequent partially occluded by wipers, and there is a large motion in the middle of the video. While some trackers lost track, MAVOT can still track the car, even after a few frames of incorrect tracking due to large motion</p>
+      </div>
+
+    </div>
+  </div><br>
+
+  <div class="jumbotron" id="Memory">
+    <div class="container-fluid bg-3 text-center">
+      <div class="row">
+        <h3>Section 2: Memory Visualization</h3>
+      </div>
+        <div class="row">
+        <div class="col-sm-6">
+          <video width="400" controls autoplay loop>
+          <source src="video_examples/memory/girl.mp4" type="video/mp4">
+          </video>
+       </div>
+         <div class="col-sm-6">
+          <video width="400" controls autoplay loop>
+          <source src="video_examples/memory/road.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+    
+      </div>
+    </div><br>
+  </div>
+
+  <div class="jumbotron container-fluid bg-3 text-center" id="Deformability" style="background-color:transparent">
+    <div class="row">
+      <h3>Section 3: Deformability</h3>
+    </div>
+        <div class="row">
+      <div class="col-sm-3">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/sizes/bag.mp4" type="video/mp4">
+        </video>
+        <p><b>bag</b></p>
+     </div>
+       <div class="col-sm-3">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/sizes/helicopter.mp4" type="video/mp4">
+        </video>
+        <p><b>helicopter</b></p>
+      </div>
+      <div class="col-sm-3">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/sizes/singer.mp4" type="video/mp4">
+        </video>
+        <p><b>singer3</b></p>
+     </div>
+     <div class="col-sm-3">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/sizes/tunnel.mp4" type="video/mp4">
+        </video>
+        <p><b>tunnel</b></p>
+     </div>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+ 
+    </div>
+  </div><br>
+
+  <div class="jumbotron container-fluid bg-3 text-center" id="More">
+    <div class="row">
+      <h3>Section 4: More demo sequences</h3>
+    </div>
+ <div class="row">
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/fixed/ball2.mp4" type="video/mp4">
+        </video>
+        <p><b>ball2</b></p>
+      </div>
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/fixed/butterfly.mp4" type="video/mp4">
+        </video>
+        <p><b>butterfly</b></p>
+      </div>
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/fixed/fish3.mp4" type="video/mp4">
+        </video>
+        <p><b>fish3</b></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/fixed/marching.mp4" type="video/mp4">
+        </video>
+        <p><b>marching</b></p>
+      </div>
+
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/fixed/sphere.mp4" type="video/mp4">
+        </video>
+        <p><b>sphere</b></p>
+      </div>
+
+      <div class="col-sm-4">
+        <video width="400" controls autoplay loop>
+        <source src="video_examples/fixed/traffic.mp4" type="video/mp4">
+        </video>
+        <p><b>traffic</b></p>
+      </div>
+
+    </div>
+  </div><br>
+
+  <!-- <footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer> -->
+
+</body>
+<script>
+  $(".nav li").on("click", function() {
+    $(".nav li").removeClass("active");
+    $(this).addClass("active");
+  });
+</script>
+
+</html>
